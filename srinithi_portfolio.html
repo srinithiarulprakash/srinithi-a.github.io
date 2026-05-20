@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srinithi A — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1A5276;
+    --blue-mid: #2980B9;
+    --blue-light: #D6EAF8;
+    --blue-pale: #EBF5FB;
+    --black: #0D1B2A;
+    --gray: #5D6D7E;
+    --gray-light: #AEB6BF;
+    --white: #FAFCFF;
+    --accent: #E8F4FD;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,252,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--blue-light);
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--blue);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--blue); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--blue-light) 0%, transparent 70%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: -50px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--blue-pale) 0%, transparent 70%);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blue-pale);
+    border: 1px solid var(--blue-light);
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--blue-mid);
+    border-radius: 50%;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 8vw, 88px);
+    line-height: 1.0;
+    color: var(--black);
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.35s;
+  }
+
+  .hero-name span {
+    color: var(--blue);
+    font-style: italic;
+  }
+
+  .hero-title {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--gray);
+    margin-bottom: 32px;
+    letter-spacing: 0.3px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.5s;
+  }
+
+  .hero-title strong {
+    color: var(--blue-mid);
+    font-weight: 600;
+  }
+
+  .hero-bio {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--gray);
+    max-width: 580px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.65s;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.8s;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--blue);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--gray-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: var(--blue-light);
+    align-self: stretch;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.95s;
+  }
+
+  .btn-primary {
+    background: var(--blue);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+    border: 2px solid var(--blue);
+  }
+
+  .btn-primary:hover {
+    background: var(--black);
+    border-color: var(--black);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--blue);
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+    border: 2px solid var(--blue-light);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--blue);
+    background: var(--blue-pale);
+    transform: translateY(-1px);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 96px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 44px);
+    color: var(--black);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 56px;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--blue-light);
+    margin-bottom: 96px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--blue-light);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--blue-mid);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--blue-mid);
+    box-shadow: 0 8px 32px rgba(26,82,118,0.08);
+    transform: translateY(-2px);
+  }
+
+  .skill-card:hover::before { opacity: 1; }
+
+  .skill-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .skill-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .skill-items {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* CAMPAIGNS */
+  .campaigns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .campaign-card {
+    background: var(--white);
+    border: 1px solid var(--blue-light);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .campaign-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--blue-mid));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .campaign-card:hover {
+    box-shadow: 0 12px 40px rgba(26,82,118,0.1);
+    transform: translateY(-3px);
+    border-color: var(--blue-mid);
+  }
+
+  .campaign-card:hover::after { opacity: 1; }
+
+  .campaign-industry {
+    display: inline-block;
+    background: var(--blue-pale);
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .campaign-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--black);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
+  .campaign-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .metric {
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .metric-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--blue);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: var(--gray-light);
+    font-weight: 500;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .campaign-outcome {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+    font-weight: 300;
+    border-top: 1px solid var(--blue-light);
+    padding-top: 14px;
+    margin-top: 4px;
+  }
+
+  /* EXPERIENCE */
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--blue-light);
+    position: relative;
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 4px;
+  }
+
+  .exp-date {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue-mid);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .exp-company {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 300;
+  }
+
+  .exp-type {
+    display: inline-block;
+    background: var(--blue-pale);
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    width: fit-content;
+  }
+
+  .exp-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--black);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .exp-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    background: var(--blue-pale);
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--blue-light);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.25s;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 12px 40px rgba(26,82,118,0.1);
+    transform: translateY(-3px);
+    border-color: var(--blue-mid);
+  }
+
+  .project-icon {
+    width: 48px; height: 48px;
+    background: var(--blue-pale);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    border: 1px solid var(--blue-light);
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--black);
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .project-tech {
+    font-size: 12px;
+    color: var(--blue-mid);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* CERTIFICATIONS */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .cert-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--blue-pale);
+    border: 1px solid var(--blue-light);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s;
+  }
+
+  .cert-card:hover {
+    border-color: var(--blue-mid);
+    background: var(--accent);
+  }
+
+  .cert-icon {
+    width: 40px; height: 40px;
+    background: var(--blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .cert-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .cert-issuer {
+    font-size: 11px;
+    color: var(--gray-light);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--blue);
+    color: white;
+    padding: 96px 48px;
+    text-align: center;
+  }
+
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 12px;
+  }
+
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .contact-title em {
+    font-style: italic;
+    color: var(--blue-light);
+  }
+
+  .contact-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .contact-link:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateY(-1px);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--gray-light);
+    border-top: 1px solid var(--blue-light);
+    letter-spacing: 0.3px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--white); }
+  ::-webkit-scrollbar-thumb { background: var(--blue-light); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--blue-mid); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Srinithi A.</div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#campaigns">Campaigns</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Available for Remote Opportunities</div>
+    <h1 class="hero-name">Srinithi <span>A.</span></h1>
+    <p class="hero-title">
+      <strong>Performance Marketer</strong> &nbsp;·&nbsp; Digital Marketing Executive &nbsp;·&nbsp; Marketing Analyst
+    </p>
+    <p class="hero-bio">
+      B.Sc Computer Science with AI graduate from Coimbatore. I build data-driven marketing systems that generate real leads at low cost — across Meta Ads, SEO, and analytics. 391+ leads generated across 7 industries. 122 SEO blogs published. Websites built from scratch.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">391+</span>
+        <span class="stat-label">Leads Generated</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">163</span>
+        <span class="stat-label">Leads in 4 Days</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">122</span>
+        <span class="stat-label">SEO Blogs</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">7</span>
+        <span class="stat-label">Industries</span>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#campaigns" class="btn-primary">View Campaign Results</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label reveal">What I Do</div>
+  <h2 class="section-title reveal">Core Skills &<br>Expertise</h2>
+  <p class="section-subtitle reveal">Hands-on experience across performance marketing, SEO, data analytics, and web development — with real results to back every skill.</p>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🎯</div>
+      <div class="skill-name">Performance Marketing</div>
+      <div class="skill-items">Meta Ads Manager · Lead Generation · Audience Targeting · Budget Optimisation · A/B Testing · Campaign Scaling</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔍</div>
+      <div class="skill-name">SEO & Content</div>
+      <div class="skill-items">On-Page SEO · Keyword Research · Long-Form Blog Writing · Google Search Console · Semrush · 122 Published Blogs</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Data Analytics</div>
+      <div class="skill-items">Google Analytics · Power BI · SQL · Python (Pandas, NumPy, Matplotlib) · Campaign Reporting · Data Visualisation</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">📱</div>
+      <div class="skill-name">Social Media</div>
+      <div class="skill-items">Instagram · Facebook · YouTube · LinkedIn · Twitter · Carousel & Video Content · 6 Platforms Managed</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">💻</div>
+      <div class="skill-name">Web & Design</div>
+      <div class="skill-items">WordPress (From Scratch) · Canva · Video Content Creation · Website Design · UI Layout · Visual Hierarchy</div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">Technical</div>
+      <div class="skill-items">SQL · Python · Power BI · Prompt Engineering · Google My Business · Meta Business Suite · Excel & Sheets</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- CAMPAIGNS -->
+<section id="campaigns">
+  <div class="section-label reveal">Proven Results</div>
+  <h2 class="section-title reveal">Freelance Campaign<br>Case Studies</h2>
+  <p class="section-subtitle reveal">Real campaigns. Real numbers. Across education, beauty, real estate, and fashion — delivering high-intent leads at consistently low cost per result.</p>
+  <div class="campaigns-grid">
+
+    <div class="campaign-card reveal">
+      <span class="campaign-industry">Education</span>
+      <div class="campaign-title">Teacher Training Course — Messaging Campaign</div>
+      <div class="campaign-metrics">
+        <div class="metric"><div class="metric-value">105</div><div class="metric-label">Enquiries</div></div>
+        <div class="metric"><div class="metric-value">₹12.06</div><div class="metric-label">Cost / Result</div></div>
+        <div class="metric"><div class="metric-value">12,943</div><div class="metric-label">Reach</div></div>
+        <div class="metric"><div class="metric-value">₹1,266</div><div class="metric-label">Total Spend</div></div>
+      </div>
+      <div class="campaign-outcome">Delivered high-volume course enquiries at extremely low cost using niche interest targeting and message-optimised ads.</div>
+    </div>
+
+    <div class="campaign-card reveal">
+      <span class="campaign-industry">Beauty</span>
+      <div class="campaign-title">Makeup Makeover Services — Instagram Leads</div>
+      <div class="campaign-metrics">
+        <div class="metric"><div class="metric-value">79</div><div class="metric-label">Enquiries</div></div>
+        <div class="metric"><div class="metric-value">₹61</div><div class="metric-label">Cost / Result</div></div>
+        <div class="metric"><div class="metric-value">35,775</div><div class="metric-label">Reach</div></div>
+        <div class="metric"><div class="metric-value">₹4,823</div><div class="metric-label">Total Spend</div></div>
+      </div>
+      <div class="campaign-outcome">Instagram drove over 95% of enquiries — proving strong platform-audience alignment for beauty businesses.</div>
+    </div>
+
+    <div class="campaign-card reveal">
+      <span class="campaign-industry">Education</span>
+      <div class="campaign-title">Preschool / KG Admissions Enquiries</div>
+      <div class="campaign-metrics">
+        <div class="metric"><div class="metric-value">46</div><div class="metric-label">Enquiries</div></div>
+        <div class="metric"><div class="metric-value">₹82.42</div><div class="metric-label">Cost / Result</div></div>
+        <div class="metric"><div class="metric-value">14,583</div><div class="metric-label">Reach</div></div>
+        <div class="metric"><div class="metric-value">₹3,791</div><div class="metric-label">Total Spend</div></div>
+      </div>
+      <div class="campaign-outcome">Generated consistent parent enquiries using trust-focused messaging ads for a local early childhood education business.</div>
+    </div>
+
+    <div class="campaign-card reveal">
+      <span class="campaign-industry">Bridal</span>
+      <div class="campaign-title">Bridal & Makeup — High Volume Campaign</div>
+      <div class="campaign-metrics">
+        <div class="metric"><div class="metric-value">155</div><div class="metric-label">Enquiries</div></div>
+        <div class="metric"><div class="metric-value">₹71</div><div class="metric-label">Avg Cost</div></div>
+        <div class="metric"><div class="metric-value">2x</div><div class="metric-label">Campaigns</div></div>
+        <div class="metric"><div class="metric-value">₹11,016</div><div class="metric-label">Total Spend</div></div>
+      </div>
+      <div class="campaign-outcome">Delivered predictable, scalable lead flow through Instagram-first strategy and consistent creative testing.</div>
+    </div>
+
+    <div class="campaign-card reveal">
+      <span class="campaign-industry">Real Estate</span>
+      <div class="campaign-title">Real Estate — Lead Generation</div>
+      <div class="campaign-metrics">
+        <div class="metric"><div class="metric-value">62</div><div class="metric-label">Converted</div></div>
+        <div class="metric"><div class="metric-value">₹13</div><div class="metric-label">Cost / Lead</div></div>
+        <div class="metric"><div class="metric-value">58</div><div class="metric-label">Qualified</div></div>
+        <div class="metric"><div class="metric-value">₹1,400</div><div class="metric-label">Total Spend</div></div>
+      </div>
+      <div class="campaign-outcome">Generated high-quality leads tracked and qualified via Meta Leads Centre — 94% qualification rate.</div>
+    </div>
+
+    <div class="campaign-card reveal">
+      <span class="campaign-industry">Fashion</span>
+      <div class="campaign-title">Clothing Brand — Messaging Sales</div>
+      <div class="campaign-metrics">
+        <div class="metric"><div class="metric-value">33</div><div class="metric-label">Enquiries</div></div>
+        <div class="metric"><div class="metric-value">₹13.87</div><div class="metric-label">Cost / Result</div></div>
+        <div class="metric"><div class="metric-value">12,178</div><div class="metric-label">Impressions</div></div>
+        <div class="metric"><div class="metric-value">₹457</div><div class="metric-label">Total Spend</div></div>
+      </div>
+      <div class="campaign-outcome">Drove direct purchase conversations with extremely low cost per enquiry using messaging ads.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label reveal">Work History</div>
+  <h2 class="section-title reveal">Experience</h2>
+  <p class="section-subtitle reveal">Professional experience combining performance marketing, SEO, data analytics, and client communications.</p>
+  <div class="experience-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-date">Dec 2024 – May 2025</span>
+        <span class="exp-company">Law Firm, Coimbatore</span>
+        <span class="exp-type">Full Time</span>
+      </div>
+      <div>
+        <div class="exp-title">Digital Marketing Executive</div>
+        <div class="exp-desc">Built the law firm's complete digital presence from scratch — 122 SEO blogs, WordPress website, Meta lead campaigns generating 163 leads in 4 days, Google Analytics tracking, and client discovery calls including international NRI cases.</div>
+        <div class="exp-tags">
+          <span class="tag">Meta Ads</span>
+          <span class="tag">SEO</span>
+          <span class="tag">WordPress</span>
+          <span class="tag">Google Analytics</span>
+          <span class="tag">Content Writing</span>
+          <span class="tag">Lead Generation</span>
+          <span class="tag">Video Content</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-date">2024 – Present</span>
+        <span class="exp-company">Multiple Clients</span>
+        <span class="exp-type">Freelance</span>
+      </div>
+      <div>
+        <div class="exp-title">Performance Marketing Specialist</div>
+        <div class="exp-desc">Independent Meta Ads specialist managing lead generation campaigns across 7 client industries. 391+ total leads delivered with cost per result as low as ₹12.06. Full campaign lifecycle management from audience research to reporting.</div>
+        <div class="exp-tags">
+          <span class="tag">Meta Ads Manager</span>
+          <span class="tag">Lead Generation</span>
+          <span class="tag">A/B Testing</span>
+          <span class="tag">Campaign Analytics</span>
+          <span class="tag">Performance Reporting</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label reveal">Technical Work</div>
+  <h2 class="section-title reveal">Projects</h2>
+  <p class="section-subtitle reveal">Self-driven technical projects spanning data analytics, database management, and cybersecurity.</p>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-icon">🩸</div>
+      <div class="project-title">Blood Bank Management System</div>
+      <div class="project-tech">SQL · Database Design</div>
+      <div class="project-desc">Designed and implemented a relational database for managing blood donors, blood types, stock levels, and hospital requests. Full CRUD operations with multi-table JOINs, data integrity constraints, and real-world inventory tracking.</div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">🔐</div>
+      <div class="project-title">Malware Analysis Tool</div>
+      <div class="project-tech">Python · NumPy · Pandas · Matplotlib</div>
+      <div class="project-desc">Built a file-based malware detection tool using entropy analysis. High entropy values indicate potential encryption or obfuscation typical of malware. Classifies files by risk level using statistical thresholds with visualised entropy curves.</div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-icon">📈</div>
+      <div class="project-title">Retail Sales Analytics Dashboard</div>
+      <div class="project-tech">Power BI · Data Visualisation</div>
+      <div class="project-desc">Interactive Power BI dashboard analysing 11.97K orders and ₹39.79M in supermarket sales. Dynamic bar charts, pie charts, and gauge visuals with state-level filters for regional performance drill-down.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider" style="max-width:1100px;margin:0 auto;"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" style="padding-top:0;">
+  <div class="section-label reveal">Credentials</div>
+  <h2 class="section-title reveal">Education &<br>Certifications</h2>
+  <p class="section-subtitle reveal">Formal education in Computer Science with AI, backed by industry certifications.</p>
+
+  <div class="cert-card reveal" style="margin-bottom:32px; max-width:480px;">
+    <div class="cert-icon">🎓</div>
+    <div>
+      <div class="cert-name">B.Sc Computer Science with Artificial Intelligence</div>
+      <div class="cert-issuer">PSGR Krishnammal College for Women, Coimbatore · 2022–2025</div>
+    </div>
+  </div>
+
+  <div class="cert-grid">
+    <div class="cert-card reveal">
+      <div class="cert-icon">🌐</div>
+      <div>
+        <div class="cert-name">Fundamentals of Digital Marketing</div>
+        <div class="cert-issuer">Google Digital Garage</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-icon">🔎</div>
+      <div>
+        <div class="cert-name">Beginner SEO</div>
+        <div class="cert-issuer">Semrush Academy</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-icon">🤖</div>
+      <div>
+        <div class="cert-name">Prompt Engineering for Everyone</div>
+        <div class="cert-issuer">IBM / Coursera</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-label">Let's Work Together</div>
+    <h2 class="contact-title">Open to <em>Remote</em><br>Opportunities Globally</h2>
+    <p class="contact-sub">Available for full-time remote roles in performance marketing, digital marketing, or data analytics. Based in Coimbatore, India. Open to US, Europe, and worldwide opportunities.</p>
+    <div class="contact-links">
+      <a href="mailto:srinithiarulprakash6@gmail.com" class="contact-link">✉ srinithiarulprakash6@gmail.com</a>
+      <a href="https://www.linkedin.com/in/srinithi-a-331265285" target="_blank" class="contact-link">💼 LinkedIn Profile</a>
+      <a href="tel:9791709494" class="contact-link">📞 9791709494</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2025 Srinithi A · Coimbatore, India · Built with purpose
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger children in grids
+  document.querySelectorAll('.skills-grid, .campaigns-grid, .projects-grid, .cert-grid').forEach(grid => {
+    grid.querySelectorAll('.reveal').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 80}ms`;
+    });
+  });
+</script>
+
+</body>
+</html>
